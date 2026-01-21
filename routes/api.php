@@ -11,7 +11,7 @@ Route::post('login', [LoginController::class, 'login'])->name('login');
         });
     });
     
-     //Staff
+    //Staff
     Route::prefix('/staff-managements')->name('StaffManagements')->group(function () {
         Route::post('/staff-create', [StaffManagementsController::class, 'createStaff'])->name('createStaff');
         Route::get('/staff-get', [StaffManagementsController::class, 'getStaff'])->name('getStaff');

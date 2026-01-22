@@ -1,7 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LoginSettingController;
+use App\Http\Controllers\Staff\StaffManagementsController;
+use App\Http\Controllers\Category\CategoryManagementsController;
 
 Route::post('login', [LoginController::class, 'login'])->name('login');
  Route::middleware(['auth:cognito', 'checkIpAddress', 'operationLog'])->name('api.')->group(function () {  

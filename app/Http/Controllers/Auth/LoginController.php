@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Auth\LoginResource; 
+use App\Models\User;                 
+use Illuminate\Support\Facades\Log;   
+use Exception;
 
 class LoginController extends Controller
 {
@@ -14,15 +20,15 @@ class LoginController extends Controller
     {
         try{
             $credentials = $request->validated();
-            if (!auth()->attempt($credentials)) {
+            if (!$credentials) {
                 return response()->json([
                     'result' => false,
                     'message' => 'Invalid email or password'
                 ], 401);
             }
-            $user = auth()->user();
+            $user = Auth::user();
             if ($user->status !== 'active') {
-                auth()->logout();
+                // auth()->logout();
                 return response()->json([
                     'result' => false,
                     'message' => 'Your account is suspended.'
@@ -45,7 +51,7 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function logout(string $id)
     {
         //
     }
